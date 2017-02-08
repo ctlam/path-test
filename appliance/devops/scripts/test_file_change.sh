@@ -79,6 +79,10 @@ if [[ $mode == "last" ]]; then
     fi
 
     echo "diff prev commit - current commit: $GIT_PREVIOUS_COMMIT : $GIT_COMMIT"
+
+    git log  --format="format:hash:%H" --name-status ${GIT_PREVIOUS_COMMIT}..${GIT_COMMIT}
+
+    echo "$filename"
     file_changed=`git log  --format="format:hash:%H" --name-status ${GIT_PREVIOUS_COMMIT}..${GIT_COMMIT} |grep ${filename} | awk '{print $2}'`
     if [[ -n $file_changed ]]; then
         exit 0
