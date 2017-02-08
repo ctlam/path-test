@@ -83,8 +83,9 @@ if [[ $mode == "last" ]]; then
     git log  --format="format:hash:%H" --name-status ${GIT_PREVIOUS_COMMIT}..${GIT_COMMIT}
 
     echo "$filename"
-    file_changed=`git log  --format="format:hash:%H" --name-status ${GIT_PREVIOUS_COMMIT}..${GIT_COMMIT} |grep ${filename} | awk '{print $2}'`
-    if [[ -n $file_changed ]]; then
+    entry=`git log  --format="format:hash:%H" --name-status ${GIT_PREVIOUS_COMMIT}..${GIT_COMMIT} |grep ${filename}`
+    change_mode=`echo $entry | awk '{print $1}'`
+    if [[ $change_mode == "M" ]]; then
         exit 0
     else
         exit 1
