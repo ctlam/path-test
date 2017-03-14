@@ -1,6 +1,9 @@
 This is a new change.
 new change.
 
+b2 insert here.
+
+b2 end
 This is a test1
 test2.
 test2 change.
